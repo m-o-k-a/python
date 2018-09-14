@@ -7,7 +7,7 @@ Created on Fri Sep 14 13:20:05 2018
 #Significand decompose - Eddy Ikhlef
 result = [] #create list to show all the elements
 result_value = .0 #create a float
-index_value = 0 #start index to -1
+index_value = 0 #start index to 0 (incrementation at the beginning of the for loop to match the identification of the list)
 m = input("Ecrivez votre mantisse: ") #get a binary string
 for n in list(str(m))[1:]: #look over the binary string; [1:] to don't count the first digit (always one in the significand)
     index_value += 1 #increment index value, to match with the position of the number n
