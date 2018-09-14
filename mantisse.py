@@ -1,4 +1,10 @@
-#Mantisse decompose - Eddy Ikhlef
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Sep 14 13:20:05 2018
+
+@author: Eddy
+"""
+#Significand decompose - Eddy Ikhlef
 result = [] #create list to show all the elements
 result_value = .0 #create a float
 index_value = 0 #start index to -1
