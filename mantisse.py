@@ -1,4 +1,4 @@
-#Mantisse decompouse - Eddy Ikhlef
+#Mantisse decompose - Eddy Ikhlef
 result = [] #create list to show all the elements
 result_value = .0 #create a float
 index_value = -1 #start index to -1
