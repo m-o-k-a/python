@@ -21,6 +21,7 @@ while stop_simulation:
     survive_rate = int(input("[SURIVVE RATE]\nHow Many 1 need to be near the cell to survive: \n>> "))
     survive_type = int(input("[SURVIVE TYPE]\n(0)Same neighbour as survive_rate\n(1)Minimum neighbour as survive_rate\n(2)Maximum neighbour as survive_rate\n>> "))
     survive_type = survive_type%3
+    slow_mode = str(input("Slow Mode: \n(t)True\n(Any Key)False\n>>"))
             
 #STEP 2: CREATING
     grid = []
@@ -60,8 +61,12 @@ while stop_simulation:
             position = 0
             for r in range(0, grid_rows):
                 for c in range(0, grid_columns):
-                    grid[r][c] = int(seed[position])
-                    position += 1
+                    try:
+                        grid[r][c] = int(seed[position])
+                        position += 1
+                    except:
+                        grid[r][c] = 0
+                        position += 1
         #MANUAL
         if grid_fill == "m"  or grid_fill == "M":
             fill_row = int(input("Rows of the grid to fill: \n>>"))
@@ -123,7 +128,8 @@ while stop_simulation:
         grid = next_grid
         for g in range(0, grid_rows):
             print(grid[g], end="\n")
-        os.system("pause")
+        if slow_mode == "t" or slow_mode == "T":
+            os.system("pause")
     genX_life = 0
     genX_death = 0
     to_fill = False
