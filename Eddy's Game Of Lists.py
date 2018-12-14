@@ -2,7 +2,7 @@
 """
 Created on Fri Dec 14 15:30:25 2018
 Version 1.0 on Fri Dec 14 16:29:58 2018
-
+Version 1.1 on Fri Dec 14 18:07:10 2018 - seed update
 @author: Eddy
 """
 #Eddy's Game of lists
@@ -36,28 +36,39 @@ while stop_simulation:
         print("Setting Generation 0:\n")
         for g in range(0, grid_rows):
             print(grid[g], end="\n")
-        grid_fill = str(input("Filling:\n(c)clear\n(r)random\n(m)manual\n(s)start\n>>"))
+        grid_fill = str(input("Filling:\n(c)clear\n(r)random\n(m)manual\n(s)seed\n(b)begin\n>>"))
         #CLEAR FILL
-        if grid_fill == "c":
+        if grid_fill == "c" or grid_fill == "C":
             for r in range(0, grid_rows):
                 for c in range(0, grid_columns):
                     grid[r][c] = 0
         #RANDOM FILL
-        if grid_fill == "r":
+        if grid_fill == "r" or grid_fill == "R":
+            seed = ""
             grid = []
             for r in range(0, grid_rows):
                 next_row = []
                 for c in range(0, grid_columns):
                     random_value = randint(0, 1)
+                    seed += str(random_value)
                     next_row.append(random_value)
                 grid.append(next_row)
-        #MANUAL FILL
-        if grid_fill == "m":
+            print("Seed: ", seed)
+        #SEED FILL
+        if grid_fill == "s"  or grid_fill == "S":
+            seed = input("Seed work columns by columns, ex: 010000 will, on a 3*3 world, only had the cell on the first row second columns living.\nWrite your seed here (if the seed is too long it will only use the part in the range of the size of the world): \n>>")
+            position = 0
+            for r in range(0, grid_rows):
+                for c in range(0, grid_columns):
+                    grid[r][c] = int(seed[position])
+                    position += 1
+        #MANUAL
+        if grid_fill == "m"  or grid_fill == "M":
             fill_row = int(input("Rows of the grid to fill: \n>>"))
             fill_column = int(input("Columns of the grid to fill: \n>>"))
             grid[fill_row][fill_column] = 1
-        #START
-        if grid_fill == "s":
+        #BEGIN
+        if grid_fill == "b"  or grid_fill == "B":
             gen0_life = 0
             gen0_death = 0
             to_fill = False
@@ -134,6 +145,6 @@ while stop_simulation:
     
 #STEP 6: reload
     reload = str(input("Generation Succesfully ended.\n Want to start a new one(Any Key) or stop(F) ?\n>>"))
-    if reload == "F":
+    if reload == "F" or reload == "f":
         stop_simulation = False
 print("Thanks for using Eddy's Game of Lists!")
