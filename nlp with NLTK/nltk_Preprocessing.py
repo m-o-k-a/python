@@ -6,9 +6,9 @@
 #Stemming - a blunt axe to chop off word prefixes and suffixes. “booing” and “booed” become “boo”, but “sing” may become “s” and “sung” would remain “sung.”
 #Lemmatization - a scalpel to bring words down to their root forms. For example, NLTK’s savvy lemmatizer knows “am” and “are” are related to “be.”
 
-# import regex to delete the punctuation
+#import regex to delete the punctuation
 import re
-# nltk to do the preprocessing magic
+#nltk to do the preprocessing magic
 import nltk
 #remove the commentary line if you miss theses ressources
 #nltk.download("punkt")
@@ -28,7 +28,7 @@ tokenized = word_tokenize(cleaned)
 stemmer = PorterStemmer()
 stemmed = [stemmer.stem(token) for token in tokenized]
 
-# use lemmatizer to get the root form of each words
+#use lemmatizer to get the root form of each words
 lemmatizer = WordNetLemmatizer()
 #lemmatized text will, for each word in the tokenized text, lemmatize it to get the root form
 lemmatized = [lemmatizer.lemmatize(token) for token in tokenized]

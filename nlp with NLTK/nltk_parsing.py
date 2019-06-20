@@ -12,7 +12,7 @@ from nltk import Tree
 #select parsing language : english
 dependency_parser = spacy.load('en')
 
-# Input sentence
+#input sentence
 my_sentence = "Therefore the storm had break my heart in a delightful shiny move"
 #parse the sentence
 my_parsed_sentence = dependency_parser(my_sentence)

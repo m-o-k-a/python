@@ -10,7 +10,7 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 
-# Input text
+#input text
 text = "Sakura hirahira mai orite ochite Yureru omoi no take wo dakishimeta Kimi to haru ni negai shi ano yume wa Ima mo miete iru yo sakura mai chiru Densha kara mieta no wa Itsuka no omokage Futari de kayotta haru no oohashi Sotsugyou no toki ga kite Kimi wa machi wo deta Iroduku kawabe ni ano hi wo sagasu no"
 
 #count word function
@@ -36,6 +36,6 @@ normalizer = WordNetLemmatizer()
 #lemmatized text will, for each word in the tokenized text, lemmatize it to get the root form
 normalized = [normalizer.lemmatize(token) for token in filtered]
 
-#Define bag_of_looking_glass_words & print:
+#define bag_of_looking_glass_words & print:
 bag_of_looking_glass_words = Counter(normalized)
 print(bag_of_looking_glass_words)
