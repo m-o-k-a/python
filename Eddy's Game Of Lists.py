@@ -103,22 +103,24 @@ while stop_simulation:
             survive = 0
             for c in range(0, grid_columns):
                 survive = 0
+                #avoid to count itself
+                survive -= 1
+                #check mates
                 for x in range(-1, 2):
                     for y in range(-1, 2):
-                        try: # left columns
+                        #all columns except one of the above
+                        try:
                             if grid[r+x][c+y] == 1:
-                                survive += 1
+                                    survive += 1
                         except:
-                            1+1
-                survive -= 1 #*because it count himself
-                #check survive
-                if survive == survive_rate2 and grid[r][c] == 0: #come alive
+                            pass
+                if survive == survive_rate2-1 and grid[r][c] == 0: #come alive
                     next_grid[r][c] = 1
                 elif (survive >= survive_rate and survive <= survive_rate2) and grid[r][c] == 1: #survive
                     next_grid[r][c] = 1
-                elif survive > survive_rate and grid[r][c] == 1: #die
+                elif (survive < survive_rate or survive > survive_rate2) and grid[r][c] == 1: #die
                     next_grid[r][c] = 0
-                
+                    
         if generation >= generation_max:
             to_run = False
         grid = next_grid
