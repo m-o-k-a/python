@@ -3,6 +3,7 @@
 Created on Fri Dec 14 15:30:25 2018
 Version 1.0 on Fri Dec 14 16:29:58 2018
 Version 1.1 on Fri Dec 14 18:07:10 2018 - seed update
+Version 1.2 on Mon Aug 26 13:02:09 2019 - massive error corrected, now we can reproduce game on life 
 @author: Eddy
 """
 #Eddy's Game of lists
@@ -18,9 +19,10 @@ while stop_simulation:
     generation_max = int(input("Max Generation: \n>>"))
     grid_rows = int(input("Rows of the grid: \n>>"))
     grid_columns = int(input("Columns of the grid: \n>>"))
-    survive_rate = int(input("[SURIVVE RATE]\nHow Many 1 need to be near the cell to survive: \n>> "))
-    survive_type = int(input("[SURVIVE TYPE]\n(0)Same neighbour as survive_rate\n(1)Minimum neighbour as survive_rate\n(2)Maximum neighbour as survive_rate\n>> "))
-    survive_type = survive_type%3
+    survive_rate = int(input("[SURIVVE RATE]\nHow Many 1 need to be near the cell to survive (minimum, 2 to copy game of life): \n>> "))
+    survive_rate2 = int(input("[SURIVVE RATE]\nHow Many 1 need to be near the cell to survive (maximum, 3 to copy game of life): \n>> "))
+    #survive_type = int(input("[SURVIVE TYPE]\n(0)Same neighbour as survive_rate\n(1)Minimum neighbour as survive_rate\n(2)Maximum neighbour as survive_rate\n>> "))
+    survive_type = 2#survive_type%3
     slow_mode = str(input("Slow Mode: \n(t)True\n(Any Key)False\n>>"))
             
 #STEP 2: CREATING
@@ -110,17 +112,11 @@ while stop_simulation:
                             1+1
                 survive -= 1 #*because it count himself
                 #check survive
-                if survive == survive_rate and grid[r][c] == 0 and survive_type != 2: #come alive
+                if survive == survive_rate2 and grid[r][c] == 0: #come alive
                     next_grid[r][c] = 1
-                elif (survive == survive_rate) and grid[r][c] == 1: #survive
+                elif (survive >= survive_rate and survive <= survive_rate2) and grid[r][c] == 1: #survive
                     next_grid[r][c] = 1
-                elif survive > survive_rate and grid[r][c] == 1 and survive_type != 1: #die
-                    next_grid[r][c] = 0
-                elif survive > survive_rate and grid[r][c] == 1 and survive_type == 1: #live
-                    next_grid[r][c] = 1
-                if survive <= survive_rate and survive_type == 2: #come alive
-                    next_grid[r][c] = 1
-                else: #die
+                elif survive > survive_rate and grid[r][c] == 1: #die
                     next_grid[r][c] = 0
                 
         if generation >= generation_max:
